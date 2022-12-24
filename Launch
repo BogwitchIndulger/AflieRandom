@@ -1,0 +1,41 @@
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+
+public class Launch {
+	public static int randomcomic = 1+(int)(Math.random()*1133);
+
+	public static String random() {
+		String fullstring = null;
+			if( randomcomic <= 38){
+				if(randomcomic == 26) {
+				fullstring = Integer.toString(randomcomic).concat("-3");
+					}else if(randomcomic == 27) {
+				fullstring = Integer.toString(--randomcomic).concat("-2");
+					}else if(28 >= randomcomic || randomcomic >= 31){
+						randomcomic = 32;
+					}
+			}
+			if(randomcomic >= 39) {
+				fullstring = ("p-").concat(Integer.toString(randomcomic));
+			}else if(randomcomic == 382) {
+				fullstring = ("p").concat(Integer.toString(randomcomic).concat("-2"));
+			}else {
+				fullstring = ("p").concat(Integer.toString(randomcomic));
+			}
+			
+			
+		return "https://buttsmithy.com/archives/comic/" + fullstring;
+	}
+	
+	
+	public static void main(String[] args) {
+		System.setProperty(
+			"webdriver.chrome.driver", 
+			"C:\\Users\\ADMIN\\Documents\\chromedriver.exe");
+	
+		WebDriver driver = new ChromeDriver();
+		driver.manage().window().maximize();
+		driver.navigate().to( random() );	
+		}
+}
