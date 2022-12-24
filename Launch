@@ -1,5 +1,7 @@
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.WindowType;
+//this last one isn't necessary rn but maybe later
 
 public class Launch {
 	public static int randomcomic = 1+(int)(Math.random()*1133);
@@ -27,6 +29,9 @@ public class Launch {
 			}else if(randomcomic == 382) {
 				fullstring = ("p").concat(Integer.toString(randomcomic).concat("-2"));
 			//page 382 is also just randomly formatted this way??
+			}else if (randomcomic == 313) {
+				fullstring = Integer.toString(1132);
+			//Idek why it's like this
 			}else {
 				fullstring = ("p").concat(Integer.toString(randomcomic));
 			//this is just for everything below 20 which is just formatted with p
@@ -34,16 +39,15 @@ public class Launch {
 		return "https://buttsmithy.com/archives/comic/" + fullstring;
 		//this makes it so random() returns the url + the page instance
 	}
-	
 	public static void main(String[] args) {
 		System.setProperty(
 			"webdriver.chrome.driver", 
-			"[your file location here]");
+			"C:\\ ...");
 			//insert your location of the driver on your device here
 		WebDriver driver = new ChromeDriver();
 		driver.manage().window().maximize();
 		//this makes it so it'll open then maximize the chrome instance 
 		driver.navigate().to(random());     
-		//this'll open random() url which returns what was above ^
+		//this'll open random() url which returns what was above ^	
 		}
 }
