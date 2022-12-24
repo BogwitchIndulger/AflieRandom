@@ -1,41 +1,49 @@
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-
 public class Launch {
 	public static int randomcomic = 1+(int)(Math.random()*1133);
+	// initializes static int variable for a random comic in the total number
 
 	public static String random() {
 		String fullstring = null;
 			if( randomcomic <= 38){
+				// a bunch of the first comics are formatted differently
 				if(randomcomic == 26) {
+				//actual page 26 is entered as 26-3 in the archive
 				fullstring = Integer.toString(randomcomic).concat("-3");
 					}else if(randomcomic == 27) {
+				//page 27 is named as 26-2 so, idfk
 				fullstring = Integer.toString(--randomcomic).concat("-2");
 					}else if(28 >= randomcomic || randomcomic >= 31){
+				//pages 28-31 straight up don't exist, so it just becomes 32
+				//I could've done some ceil/floor or rounding for this, but like... eh? maybe later
 						randomcomic = 32;
 					}
 			}
 			if(randomcomic >= 39) {
 				fullstring = ("p-").concat(Integer.toString(randomcomic));
+			//everything past 38 is formatted this way in the archive
 			}else if(randomcomic == 382) {
 				fullstring = ("p").concat(Integer.toString(randomcomic).concat("-2"));
+			//page 382 is also just randomly formatted this way??
 			}else {
 				fullstring = ("p").concat(Integer.toString(randomcomic));
-			}
-			
-			
+			//this is just for everything below 20 which is just formatted with p
+			}	
 		return "https://buttsmithy.com/archives/comic/" + fullstring;
+		//this makes it so random() returns the url + the page instance
 	}
-	
 	
 	public static void main(String[] args) {
 		System.setProperty(
 			"webdriver.chrome.driver", 
-			"C:\\Users\\ADMIN\\Documents\\chromedriver.exe");
-	
+			"[your file location here]");
+			//insert your location of the driver on your device here
 		WebDriver driver = new ChromeDriver();
 		driver.manage().window().maximize();
-		driver.navigate().to( random() );	
+		//this makes it so it'll open then maximize the chrome instance 
+		driver.navigate().to(random());     
+		//this'll open random() url which returns what was above ^
 		}
 }
