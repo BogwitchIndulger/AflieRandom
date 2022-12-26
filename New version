@@ -1,0 +1,65 @@
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.WindowType;
+//this last one isn't necessary rn but maybe later
+
+public class Launch {
+	public static int randomcomic = 1+(int)(Math.random()*1133);
+	// initializes static int variable for a random comic in the total number
+
+	public static String random() {
+		String fullstring = null;
+		String completestring = "https://buttsmithy.com/archives/comic/";
+		if( randomcomic <= 38){
+			 completestring += switch (randomcomic) {
+				case 26 -> {
+					fullstring = ("p").concat(Integer.toString(randomcomic).concat("-3"));
+					yield fullstring;
+				}
+				case 27 -> {
+					fullstring = ("p-").concat(Integer.toString(--randomcomic).concat("-2"));
+					yield fullstring;
+				}
+				case 28, 29, 30, 31 -> {
+					fullstring = ("p").concat(Integer.toString(randomcomic = 32));
+					yield fullstring;
+				}
+				default -> {
+					fullstring =("p").concat(Integer.toString(randomcomic));
+					yield fullstring;
+				}
+			};}
+		if (randomcomic >38){
+		completestring += switch (randomcomic) {
+			case 382 -> {
+				fullstring = ("p").concat(Integer.toString(randomcomic).concat("-2"));
+				yield fullstring;
+			}
+			case 313 -> {
+				fullstring = ("p").concat(Integer.toString(1132));
+				yield  fullstring;
+			}
+			case 354 -> {
+				fullstring = ("p").concat(Integer.toString(8853).concat("-2"));
+				yield fullstring;
+			}
+			default -> {
+				fullstring = ("p-").concat(Integer.toString(randomcomic));
+				yield fullstring;
+			}
+		};
+	}	
+		return completestring;		
+}
+	public static void main(String[] args) {
+		System.setProperty(
+			"webdriver.chrome.driver", 
+			"C:\\ ... \\chromedriver.exe");
+			//insert your location of the driver on your device here
+		WebDriver driver = new ChromeDriver();
+		driver.manage().window().maximize();
+		//this makes it so it'll open then maximize the chrome instance 
+		driver.navigate().to(random());     
+		//this'll open random() url which returns what was above ^	
+		}
+}
